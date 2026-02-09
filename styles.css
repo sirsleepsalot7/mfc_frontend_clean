@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500&family=Nunito+Sans&display=swap');
+
 /* Reset */
 * {
   margin: 0;
@@ -7,26 +9,31 @@
 
 /* Body */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   line-height: 1.6;
-  background: #f4f4f9;
-  color: #333;
+  background: linear-gradient(135deg, #ff7139, #ff9a56, #9159f4, #0060df);
+  color: #fff;
+  min-height: 100vh;
 }
 
 /* Header */
 header {
-  background: #4a90e2;
-  color: #fff;
+  background: rgba(0,0,0,0.6);
   padding: 1rem;
+  text-align: center;
 }
 
 header h1 {
+  font-family: 'Zilla Slab', serif;
+  font-size: 2rem;
+  color: #fff;
   margin-bottom: 0.5rem;
 }
 
 nav ul {
   list-style: none;
   display: flex;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -50,13 +57,14 @@ section {
 }
 
 h2 {
+  font-family: 'Zilla Slab', serif;
   margin-bottom: 1rem;
-  color: #4a90e2;
+  color: #ff7139;
 }
 
 /* Footer */
 footer {
-  background: #333;
+  background: #1c1b22;
   color: #fff;
   text-align: center;
   padding: 1rem;
