@@ -1,5 +1,5 @@
 // Firefox Club Registration popup using SweetAlert2
-document.getElementById("registerBtn").addEventListener("click", () => {
+function showRegistration() {
   Swal.fire({
     title: 'Mozilla Firefox Club Registration',
     html: `
@@ -13,9 +13,10 @@ document.getElementById("registerBtn").addEventListener("click", () => {
     confirmButtonColor: '#ff7139',
     focusConfirm: false,
     preConfirm: () => {
-      const name = Swal.getPopup().querySelector('#name').value;
-      const email = Swal.getPopup().querySelector('#email').value;
-      const phone = Swal.getPopup().querySelector('#phone').value;
+      const popup = Swal.getPopup();
+      const name = popup.querySelector('#name').value;
+      const email = popup.querySelector('#email').value;
+      const phone = popup.querySelector('#phone').value;
       if (!name || !email || !phone) {
         Swal.showValidationMessage(`Please enter name, email, and phone number`);
       }
@@ -35,4 +36,24 @@ document.getElementById("registerBtn").addEventListener("click", () => {
       });
     }
   });
+}
+
+// Attach to all register buttons/links
+document.querySelectorAll('.registerBtn').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    showRegistration();
+    // close mobile nav when used
+    const nav = document.querySelector('header nav');
+    if (nav && nav.classList.contains('open')) nav.classList.remove('open');
+  });
 });
+
+// Mobile nav toggle
+const navToggle = document.querySelector('.nav-toggle');
+const nav = document.querySelector('header nav');
+if (navToggle && nav) {
+  navToggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+}

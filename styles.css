@@ -7,49 +7,131 @@
   box-sizing: border-box;
 }
 
-Body
+:root {
+  --accent: #ff7139;
+  --accent-2: #ff9a56;
+  --purple: #9159f4;
+  --blue: #0060df;
+  --bg-surface: rgba(28,27,34,0.45);
+  --glass: rgba(255,255,255,0.06);
+  --text: #ffffff;
+}
+
 body {
   font-family: 'Nunito Sans', sans-serif;
   line-height: 1.6;
-  background: linear-gradient(135deg, #ff7139, #ff9a56, #9159f4, #0060df);
-  color: #fff;
+  color: var(--text);
   min-height: 100vh;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2), var(--purple), var(--blue));
+  background-size: 300% 300%;
+  animation: gradientShift 12s ease infinite;
 }
 
 /* Header */
 header {
-  background: rgba(0,0,0,0.6);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.25));
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
   padding: 1rem;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
 }
 
 header h1 {
   font-family: 'Zilla Slab', serif;
-  font-size: 2rem;
-  color: #fff;
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  color: var(--text);
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: center;
   gap: 1rem;
+  align-items: center;
 }
 
 nav a {
-  color: #fff;
+  color: var(--text);
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  transition: background 200ms ease, transform 200ms ease;
 }
 
-nav a:hover {
-  text-decoration: underline;
+nav a:hover,
+nav a:focus {
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-2px);
 }
 
-/* Main */
-main {
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1.25rem;
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  place-items: center;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.hero-inner {
+  max-width: 900px;
+  width: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.025));
+  border-radius: 14px;
   padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero h2 {
+  font-family: 'Zilla Slab', serif;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.hero p {
+  margin-bottom: 1rem;
+  opacity: 0.95;
+}
+
+.primary {
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  color: #1c1b22;
+  border: none;
+  padding: 0.75rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
 section {
@@ -59,13 +141,64 @@ section {
 h2 {
   font-family: 'Zilla Slab', serif;
   margin-bottom: 1rem;
-  color: #ff7139;
+  color: var(--accent);
+}
+
+/* Features as responsive cards */
+#features ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+#features li {
+  background: var(--bg-surface);
+  padding: 1rem;
+  border-radius: 10px;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+#features li:hover {
+  transform: translateY(-6px) rotateX(2deg);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
 }
 
 /* Footer */
 footer {
-  background: #1c1b22;
-  color: #fff;
+  background: rgba(0,0,0,0.55);
+  color: var(--text);
   text-align: center;
   padding: 1rem;
 }
+
+/* Utilities & animations */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Responsive */
+@media (max-width: 760px) {
+  .nav-toggle { display: inline-block; }
+  nav { position: absolute; right: 1rem; top: 64px; }
+  nav ul { flex-direction: column; background: rgba(0,0,0,0.5); padding: 0.75rem; border-radius: 8px; display: none; }
+  nav.open ul { display: flex; }
+  .header-inner { padding: 0.75rem 1rem; }
+  .hero-inner { padding: 1.25rem; }
+}
+
+@media (min-width: 1200px) {
+  .hero h2 { font-size: 2.5rem; }
+}
+
+/* Focus outlines for accessibility */
+a:focus, button:focus { outline: 2px solid rgba(255,255,255,0.15); outline-offset: 2px; }

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1c1b22">
   <title>Mozilla Firefox Club</title>
   <!-- Link to CSS -->
   <link rel="stylesheet" href="styles.css">
@@ -11,15 +12,26 @@
 </head>
 <body>
   <header>
-    <h1>Mozilla Firefox Club</h1>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#register" id="registerBtn">Register</a></li>
-      </ul>
-    </nav>
+    <div class="header-inner">
+      <h1>Mozilla Firefox Club</h1>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#register" class="registerBtn">Register</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h2>Join the Community</h2>
+      <p>Explore open-source, privacy-first web development with fellow enthusiasts.</p>
+      <button class="registerBtn primary">Join the Club</button>
+    </div>
+  </section>
 
   <main>
     <section id="about">
